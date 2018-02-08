@@ -5,7 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!-- <link rel="stylesheet" type="text/CSS" href="assets/style.css"> -->
     <title>Document</title>
+    <style>
+    .fader {
+        opacity: 0.4;
+    }
+    </style>
 </head>
 <body>
    <div class="container">
@@ -24,19 +30,38 @@
 $(document).ready(function() {
 var chosenHero
 var chosenEnemy
+var isHeroChosen
+var isEnemyChosen
 var isHeroAlive
 var isEnemyAlive
 
 function initGame () {
+    isHeroChosen = false
+    isEnemyChosen = false
     //generate characters
 for ( var i = 0 ; i < charArr.length ; i++) {
     var num = Math.floor(12 / charArr.length)
-    var charThing = $("<div class ='col-md-"+num+" '><img src='"+charArr[i].image+"' style='width:150px; height:150px;'/></div>")
+    // var charThing = $("<div class ='myChar col-md-"+num+"' value = '"+i+"'><img src='"+charArr[i].image+"' style='width:150px; height:150px'/></div>");
+       var charThing = $("<div class ='myChar col-md-"+num+"' value = '"+i+"'><img src='"+charArr[i].image+"' style='width:150px; height:150px'/></div>")
     $("#characters").append(charThing)
 }
 }
-
-// dame, hp, strength, image
+$(document).on("click", ".myChar", function() {
+    // chosenHero = charArr[$(this).attr("value")]
+if (isHeroChosen === false) {
+chosenHero = charArr[$(this).attr("value")]
+console.log(chosenHero)
+$(this).addClass("fader")
+isHeroChosen = true
+}
+else if(isEnemyChosen === false && chosenHero.name != charArr[$(this).attr("value")].name) {
+    chosenEnemy = charArr[$(this).attr("value")]
+    console.log(isEnemyChosen)
+    $(this).addClass("fader")
+    isEnemyChosen = true
+}
+})
+// name, hp, strength, image
 var charArr = [
 {
     name : "Obi Wan",
