@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>Document</title>
+</head>
+<body>
+   <div class="container">
+       <div id="characters" class="row">
+   </div> 
+   <div id="gameplay" class="row">
+   </div>
+  </div>
+
+    <script
+  src="http://code.jquery.com/jquery-3.3.1.js"
+  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+  crossorigin="anonymous">
+  </script>
+<script>
+$(document).ready(function() {
+var chosenHero
+var chosenEnemy
+var isHeroAlive
+var isEnemyAlive
+
+function initGame () {
+    //generate characters
+for ( var i = 0 ; i < charArr.length ; i++) {
+    var num = Math.floor(12 / charArr.length)
+    var charThing = $("<div class ='col-md-"+num+" '><img src='"+charArr[i].image+"' style='width:150px; height:150px;'/></div>")
+    $("#characters").append(charThing)
+}
+}
+
+// dame, hp, strength, image
+var charArr = [
+{
+    name : "Obi Wan",
+    hp: 50,
+    strength: 50,
+    image: "assets/images/obi2.jpeg"
+},
+{
+    name : "Luke",
+    hp: 50,
+    strength: 10,
+    image: "assets/images/luke.jpeg"
+},
+{
+    name : "Maul",
+    hp: 50,
+    strength: 50,
+    image: "assets/images/maul.jpeg"
+},
+{
+    name : "vader",
+    hp: 50,
+    strength: 50,
+    image: "assets/images/vader.jpeg"
+},
+{
+    name : "hans solo",
+    hp: 30,
+    strength: 20,
+    image: "assets/images/hans.jpeg"
+},
+{
+    name : "leah",
+    hp: 25,
+    strength: 39,
+    image: "assets/images/leia.jpeg"
+},
+]
+initGame ()
+})
+ 
+</script>
+</body>
+</html>
