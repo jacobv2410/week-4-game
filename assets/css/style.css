@@ -1,3 +1,11 @@
 body {
-    background-image: url("assets/images/background-jet.jpeg")
-};
+    background-image: url("https://cdn4.dualshockers.com/wp-content/uploads/2017/08/SWBFUE.jpg")
+}; */
+.fader {
+    opacity: 0.4;
+}
+/* .selector {
+    float: left;
+    position: relative;
+    height: 300px width 300px;
+} */
