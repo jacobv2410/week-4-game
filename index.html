@@ -10,7 +10,8 @@
    
 </head>
 <body>
-
+    <!-- I was going to enter an audio clip that played each time you hit the attack button(like a lightsaber noise), but could not get it to work.  --> -->
+        <!-- <audio id="my_audio" src="assets/music/StarWars.mp3"></audio> -->
    <div class="container">
        <div id="characters" class="row">
    </div> 
@@ -27,7 +28,7 @@
   </div>
 
     <script
-  src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"
+  src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"
   integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
   crossorigin="anonymous">
   </script>
@@ -67,8 +68,8 @@ $("#myHero").html(myHeroThing)
 else if(isEnemyChosen === false && chosenHero.name != charArr[$(this).attr("value")].name) {
     chosenEnemy = charArr[$(this).attr("value")]
     console.log(isEnemyChosen)
-    isEnemyChosen = true
     $(this).addClass("fader")
+    isEnemyChosen = true
     myEnemyThing = $("<div style='padding-top: 100px' id ='"+chosenEnemy.name+"'><img src ='"+chosenEnemy.image+"' style = 'width: 300px; height: 300px; border-radius: 10%'/><p>"+chosenEnemy.name+"</p><h6>Enemy HP</h6><p id = 'enemyHP'>"+chosenEnemy.hp+"</p></div>")
     $("#myEnemy").html(myEnemyThing)
    
