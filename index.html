@@ -7,23 +7,23 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
      <link rel="stylesheet" href="assets/css/style.css">
     <title>Document</title>
-    <!-- <style>
-    .fader {
-        opacity: 0.4;
-    }
-    </style> -->
+   
 </head>
 <body>
+    // I was going to enter an audio clip that played each time you hit the attack button(like a lightsaber noise), but could not get it to work. 
+        <!-- <audio id="my_audio" src="assets/music/StarWars.mp3"></audio> -->
    <div class="container">
        <div id="characters" class="row">
    </div> 
    <div id="gameplay" class="row">
    <div id="myHero" class="col-md-4"></div>
-   <div id="myBattle" class="col-md-4">
-       <button id="attackBTN" class="btn btn-danger">ATTACK</button>
-       <div class="row myBattleRow"></div>
-   </div>
-   <div id="myEnemy" class="col-md-4"></div>
+   <div style="padding-top: 100px" id="myBattle" class="col-md-4">
+       <button style="display:block; margin:auto" id="attackBTN" class="btn btn-danger">ATTACK</button>
+       <div style="display:block; margin:auto" class="row myBattleRow"></div>
+       <button id="newGame" style="display:block; margin:auto"; 'width: 20px; height: 10px'>RESET</button>
+    </div>
+    <div id="myEnemy" class="col-md-4"></div>
+    <div id="newGame" class="col-md-4"></div>
    </div>
   </div>
 
@@ -41,17 +41,13 @@ var isEnemyChosen
 var isHeroAlive
 var isEnemyAlive
 
-// function displayHero() {
-//     $(this).addClass("selector")
-// }
-
 function initGame () {
     isHeroChosen = false
     isEnemyChosen = false
     //generate characters
 for ( var i = 0 ; i < charArr.length ; i++) {
     var num = Math.floor(12 / charArr.length)
-       var charThing = $("<div class ='myChar col-md-"+num+"' value = '"+i+"'><img src='"+charArr[i].image+"' style='width:150px; height:150px'/></div>")
+       var charThing = $("<div style='padding-top: 50px' class ='myChar col-md-"+num+"' value = '"+i+"'><img src='"+charArr[i].image+"' style='width:150px; height:150px; border-radius: 10%'/></div>")
     $("#characters").append(charThing)
 } 
 }
@@ -63,8 +59,9 @@ chosenHero = charArr[$(this).attr("value")]
 console.log(chosenHero)
 $(this).addClass("fader")
 isHeroChosen = true
-myHeroThing = $("<div id ='"+chosenHero.name+"'><img src ='"+chosenHero.image+"' style = 'width: 300px; height: 300px'/><p>"+chosenHero.name+"</p><h6>HP</h6><p id = 'heroHP'>"+chosenHero.hp+"</p></div>")
+myHeroThing = $("<div style='padding-top: 100px' id ='"+chosenHero.name+"'><img src ='"+chosenHero.image+"' style = 'width: 300px; height: 300px; border-radius: 10%'/><p>"+chosenHero.name+"</p><h6>Hero HP</h6><p id = 'heroHP'>"+chosenHero.hp+"</p></div>")
 $("#myHero").html(myHeroThing)
+// $(this).removeClass("myChar")
 }
 
 
@@ -73,41 +70,45 @@ else if(isEnemyChosen === false && chosenHero.name != charArr[$(this).attr("valu
     console.log(isEnemyChosen)
     $(this).addClass("fader")
     isEnemyChosen = true
-    myEnemyThing = $("<div id ='"+chosenEnemy.name+"'><img src ='"+chosenEnemy.image+"' style = 'width: 300px; height: 300px'/><p>"+chosenEnemy.name+"</p><h6>HP</h6><p id = 'heroHP'>"+chosenEnemy.hp+"</p></div>")
-$("#myEnemy").html(myEnemyThing)
+    myEnemyThing = $("<div style='padding-top: 100px' id ='"+chosenEnemy.name+"'><img src ='"+chosenEnemy.image+"' style = 'width: 300px; height: 300px; border-radius: 10%'/><p>"+chosenEnemy.name+"</p><h6>Enemy HP</h6><p id = 'enemyHP'>"+chosenEnemy.hp+"</p></div>")
+    $("#myEnemy").html(myEnemyThing)
+    // $(this).removeClass("myChar")
 }
 })
+
+
 $("#attackBTN").on("click", function() {
-    var num1 = Math.floor(Math.random() *20)
-    var num2 = Math.floor(Math.random() *20)
+    var num1 = Math.floor(Math.random() *15)
+    var num2 = Math.floor(Math.random() *15)
     chosenEnemy.hp -=num1
     $("#enemyHP").text(chosenEnemy.hp)
     $(".myBattleRow").append("<p>" + chosenHero.name + " attacked " + chosenEnemy.name + " for " + num1 + " points!</p>")
     chosenHero.hp -= num2
     $("#heroHP").text(chosenHero.hp)
     $(".myBattleRow").append("<p>" + chosenEnemy.name + " attacked " + chosenHero.name + " for " + num2 + " points!</p>")
+    
     if (chosenEnemy.hp <= 0) {
         $(".myBattleRow").html("<h1>YOU WIN!</h1>")
+        isEnemyChosen = false
+        $("#newGame").on("click", )
+        console.log(chosenEnemy.hp)
+        
     }
-
- 
-})
-
-
-
-// $(document).on("click", ".character", function () {
-//     if(!isHero) {
-//         chosenHero = charArr[$(this).attr("value")]
-//         isHero = true
-//         $(this).addClass("fader")
-//         heroThing = $("div id='" +chosenHero.id + "' class ='ourHero'><img src)
-//     }
-// })
+    else if (chosenHero.hp <= 0) {
+        $(".myBattleRow").html("<h2>YOU LOSE!</h2>")
+            isHeroChosen = false 
+            console.log(chosenHero.hp)
+        }
+        
+    })
+    // Here I am building an on click function with a button to reset the game once it is over
+    $("#newGame").on("click", function clear() {
+        location.reload()
+    })
 
 
-
-// name, hp, strength, image
-var charArr = [
+    // name, hp, strength, image
+    var charArr = [
 {
     name : "Obi Wan",
     hp: 50,
@@ -140,7 +141,7 @@ var charArr = [
 },
 {
     name : "leah",
-    hp: 25,
+    hp: 45,
     strength: 39,
     image: "assets/images/leia.jpeg"
 },
