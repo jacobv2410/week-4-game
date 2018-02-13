@@ -10,8 +10,6 @@
    
 </head>
 <body>
-    <!-- I was going to enter an audio clip that played each time you hit the attack button(like a lightsaber noise), but could not get it to work.  --> -->
-        <!-- <audio id="my_audio" src="assets/music/StarWars.mp3"></audio> -->
    <div class="container">
        <div id="characters" class="row">
    </div> 
@@ -57,22 +55,22 @@ $(document).on("click", ".myChar", function() {
 if (isHeroChosen === false) {
 chosenHero = charArr[$(this).attr("value")]
 console.log(chosenHero)
-$(this).addClass("fader")
 isHeroChosen = true
+$(this).addClass("fader")
 myHeroThing = $("<div style='padding-top: 100px' id ='"+chosenHero.name+"'><img src ='"+chosenHero.image+"' style = 'width: 300px; height: 300px; border-radius: 10%'/><p>"+chosenHero.name+"</p><h6>Hero HP</h6><p id = 'heroHP'>"+chosenHero.hp+"</p></div>")
 $("#myHero").html(myHeroThing)
-// $(this).removeClass("myChar")
+
 }
 
 
 else if(isEnemyChosen === false && chosenHero.name != charArr[$(this).attr("value")].name) {
     chosenEnemy = charArr[$(this).attr("value")]
     console.log(isEnemyChosen)
-    $(this).addClass("fader")
     isEnemyChosen = true
+    $(this).addClass("fader")
     myEnemyThing = $("<div style='padding-top: 100px' id ='"+chosenEnemy.name+"'><img src ='"+chosenEnemy.image+"' style = 'width: 300px; height: 300px; border-radius: 10%'/><p>"+chosenEnemy.name+"</p><h6>Enemy HP</h6><p id = 'enemyHP'>"+chosenEnemy.hp+"</p></div>")
     $("#myEnemy").html(myEnemyThing)
-    // $(this).removeClass("myChar")
+   
 }
 })
 
